@@ -12,7 +12,7 @@ export default function ClientComponent({ accessToken }) {
 			configId={process.env.NEXT_PUBLIC_HUME_CONFIG_ID}
 			auth={{ type: "accessToken", value: accessToken }}
 			onToolCall={handleToolCall}>
-			<div className="w-[100lvw-2rem] flex flex-col justify-between min-h-[90lvh] m-4">
+			<div className="w-[100lvw-2rem] flex flex-col justify-between min-h-[85lvh] m-4">
 				<Messages />
 				<Controls />
 			</div>
