@@ -21,7 +21,7 @@ export default function Controls() {
 		<button
 			disabled={status.value === "connecting"}
 			onClick={handleClick}
-			className="btn btn-primary mx-auto mt-2 w-32 disabled:bg-primary disabled:text-primary-content">
+			className="btn btn-primary mx-auto mt-2 w-32 disabled:bg-primary disabled:text-primary-content hover:bg-primary/90">
 			{status.value === "connected"
 				? "Stop"
 				: status.value === "disconnected"

@@ -23,7 +23,7 @@ export default function Messages() {
 						<div
 							className={`chat-bubble ${
 								role === "assistant" &&
-								"bg-primary-content text-primary"
+								"bg-base-200 text-primary"
 							}`}>
 							{content}
 						</div>
