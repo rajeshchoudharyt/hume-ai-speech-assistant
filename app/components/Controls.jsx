@@ -21,8 +21,17 @@ export default function Controls() {
 		<button
 			disabled={status.value === "connecting"}
 			onClick={handleClick}
-			className="bg-gray-300 py-2 px-4 hover:bg-gray-300/80">
-			{status.value === "connected" ? "Stop" : "Start"}
+			className="btn btn-primary mx-auto mt-2 w-32 disabled:bg-primary disabled:text-primary-content">
+			{status.value === "connected"
+				? "Stop"
+				: status.value === "disconnected"
+				? "Start"
+				: ""}
+			{status.value === "connecting" ? (
+				<span className="loading loading-dots loading-xs"></span>
+			) : (
+				""
+			)}
 		</button>
 	);
 }

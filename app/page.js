@@ -1,5 +1,5 @@
-import { getAccessToken } from "@/utils/getAccessToken";
 import ClientComponent from "./components/ClientComponent";
+import { getAccessToken } from "@/utils/getAccessToken";
 
 export default async function Page() {
 	const accessToken = await getAccessToken();

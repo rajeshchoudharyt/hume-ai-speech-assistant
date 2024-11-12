@@ -1,8 +1,10 @@
 "use client";
 
-import { VoiceProvider } from "@humeai/voice-react";
 import Messages from "./Messages";
 import Controls from "./Controls";
+
+import { VoiceProvider } from "@humeai/voice-react";
+import { fetchSimilarData } from "@/utils/pinecone";
 
 export default function ClientComponent({ accessToken }) {
 	return (
@@ -10,21 +12,20 @@ export default function ClientComponent({ accessToken }) {
 			configId={process.env.NEXT_PUBLIC_HUME_CONFIG_ID}
 			auth={{ type: "accessToken", value: accessToken }}
 			onToolCall={handleToolCall}>
-			<Messages />
-			<Controls />
+			<div className="w-[100lvw-2rem] flex flex-col justify-between min-h-[calc(100lvh-2rem)] m-4">
+				<Messages />
+				<Controls />
+			</div>
 		</VoiceProvider>
 	);
 }
 
 const handleToolCall = async (message, socket) => {
-	console.log("message", message);
-
-	if (message.name === "retrieve_Vector_Embeddings") {
+	if (message.name === "retrieve_podcast_data") {
 		try {
-			const { prompt } = JSON.parse(message.parameters);
-			console.log(prompt);
+			const { query } = JSON.parse(message.parameters);
 
-			const data = "";
+			const data = await fetchSimilarData(query);
 
 			const toolResponseMessage = {
 				type: "tool_response",
@@ -32,7 +33,7 @@ const handleToolCall = async (message, socket) => {
 				content: data,
 			};
 
-			return socket.sendToolResponseMessage(toolResponseMessage);
+			return socket.success(toolResponseMessage);
 
 			//
 		} catch (error) {
