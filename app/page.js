@@ -1,3 +1,4 @@
+"use server";
 import ClientComponent from "./components/ClientComponent";
 import { fetchAccessToken } from "hume";
 
