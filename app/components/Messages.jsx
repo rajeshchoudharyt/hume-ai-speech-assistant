@@ -5,7 +5,12 @@ export default function Messages() {
 	const { messages } = useVoice();
 
 	return (
-		<div className="max-w-5xl">
+		<div className="w-full">
+			{messages.length === 0 && (
+				<p className="text-primary text-center mt-[40lvh]">
+					Welcome to speech assistant. How can I optimize your health?
+				</p>
+			)}
 			{messages.map((msg, index) => {
 				if (
 					msg.type !== "user_message" &&
